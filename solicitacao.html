@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solicitação de Coleta</title>
+  <link rel="stylesheet" href="solicitacao.css">
+</head>
+<body>
+
+  <main class="container">
+    <section class="menu-box">
+      <h1>Solicitação de Coleta</h1>
+      <p>Preencha as informações para solicitar a coleta</p>
+
+      <form id="formColeta">
+        <div class="form-group">
+          <label for="tipoColeta">Tipo de coleta</label>
+          <select id="tipoColeta" required>
+            <option value="">Selecione o tipo</option>
+            <option>Móveis</option>
+            <option>Lixo reciclável</option>
+            <option>Eletrodomésticos (TV, máquina de lavar)</option>
+            <option>Lixo tóxico</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="descricao">Descrição do material</label>
+          <textarea
+            id="descricao"
+            rows="5"
+            placeholder="Descreva o material que será coletado..."
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit" class="confirm-button">
+          Confirmar solicitação
+        </button>
+      </form>
+
+      <div class="protocolo-box" id="protocoloBox">
+        <h3>Solicitação registrada com sucesso</h3>
+        <p>Seu pedido foi enviado para análise.</p>
+        <p id="protocolo"></p>
+      </div>
+
+      <a href="menu.html" class="menu-button">Voltar ao menu</a>
+    </section>
+  </main>
+
+  <script>
+    const form = document.getElementById("formColeta");
+    const protocoloBox = document.getElementById("protocoloBox");
+    const protocoloTexto = document.getElementById("protocolo");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const descricao = document.getElementById("descricao").value;
+
+      if (descricao.trim() === "") {
+        alert("Por favor, preencha a descrição.");
+        return;
+      }
+
+      const numero = Math.floor(Math.random() * 900000) + 100000;
+
+      protocoloTexto.innerHTML = "Protocolo da solicitação: <b>#EC" + numero + "</b>";
+      protocoloBox.style.display = "block";
+
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
